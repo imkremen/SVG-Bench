@@ -1,3 +1,6 @@
+.svg-icon-wrap {
+    display: inline-block;
+}
 .svg-icon {
     display: inline-block;
     width: 24px;

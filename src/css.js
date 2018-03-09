@@ -74,13 +74,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
         };
 
         const iconProto = document.createElement("i");
+        iconProto.className = "svg-icon-wrap";
+        const inner = document.createElement("i");
+        iconProto.appendChild(inner);
 
         function _bench(timestamp) {
             let progress = timestamp - startTime;
             console.log(progress)
             if (iconIndex < self.icons) {
                 const iconElem = iconProto.cloneNode(true);
-                iconElem.setAttribute("class", "svg-icon icon-"+namesList[iconIndex]);
+                iconElem.firstElementChild.setAttribute("class", "svg-icon icon-"+namesList[iconIndex]);
                 mountPoint.appendChild(iconElem);
                 iconIndex++;
                 startTime = performance.now();
