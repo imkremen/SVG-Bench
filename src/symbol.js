@@ -2,7 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", function (event) {
     const mountPoint = document.getElementById("mount");
-    // let svgSptiteElem = document.getElementById("svg-sprite");
     const symbolsList = [...document.getElementById("svg-sprite").querySelectorAll("symbol")].map((el) => el.id);
     
     // const iconsFragment = symbolsList.reduce(

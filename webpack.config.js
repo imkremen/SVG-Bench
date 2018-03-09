@@ -4,10 +4,14 @@ const mode = 'development';
 // const mode = 'production';
 
 module.exports = {
-    entry: ["./src/index.js"],
+    entry: {
+        symbol: "./src/symbol.js",
+        css: "./src/css.js"
+    },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/dist/'
     },
     mode: mode,
     module: {
