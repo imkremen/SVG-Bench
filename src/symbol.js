@@ -84,14 +84,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
             mountPoint.innerHTML = "";
         };
 
-        const iconProto = _createIcon("");
+        const iconProto = document.createElement("i");
+        iconProto.className = "svg-icon-wrap";
+        const inner = _createIcon("");
+        iconProto.appendChild(inner);
         
         function _bench(timestamp) {
             let progress = timestamp - startTime;
             console.log(progress)
             if (iconIndex < self.icons) {
                 const iconElem = iconProto.cloneNode(true);
-                iconElem.firstElementChild.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#" + namesList[iconIndex]);
+                iconElem.firstElementChild.firstElementChild.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#" + namesList[iconIndex]);
                 mountPoint.appendChild(iconElem);
                 iconIndex++;
                 startTime = performance.now();
@@ -118,9 +121,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
   
       let svgElem = document.createElementNS(xmlns, "svg");
     //   svgElem.setAttributeNS (null, "class", pref + name);
-      svgElem.setAttributeNS (null, "role", "presentation");
-      svgElem.setAttributeNS (null, "width", width);
-      svgElem.setAttributeNS (null, "height", height);
+    //   svgElem.setAttributeNS (null, "role", "presentation");
+    //   svgElem.setAttributeNS (null, "width", width);
+    //   svgElem.setAttributeNS (null, "height", height);
       let use = document.createElementNS(xmlns, "use");
       use.setAttributeNS(xlink, "xlink:href", "#" + name);
       svgElem.appendChild(use);
