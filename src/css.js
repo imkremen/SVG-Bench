@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             console.log(progress)
             if (iconIndex < self.icons) {
                 const iconElem = iconProto.cloneNode(true);
-                iconElem.setAttribute("class", "svg-icon svg-"+namesList[iconIndex]);
+                iconElem.setAttribute("class", "svg-icon icon-"+namesList[iconIndex]);
                 mountPoint.appendChild(iconElem);
                 iconIndex++;
                 startTime = performance.now();
