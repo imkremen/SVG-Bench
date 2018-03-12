@@ -2,12 +2,13 @@
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
-    fetch('dist/assets/css/svg/sprite.css-e883bad2.svg').then(response => response.text())
-    .then(svg => {
-        var div = document.createElement('div');
-        div.innerHTML = svg.trim();
-        return div.firstChild;
-    }).then(sprite => {
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "dist/assets/css/svg/sprite.css-e883bad2.svg", true);
+    ajax.send();
+    ajax.onload = function (e) {
+        var div = document.createElement("div");
+        div.innerHTML = ajax.responseText;
+        let sprite = div.firstChild;
         const symbolsList = [...sprite.querySelectorAll("svg")].map((el) => el.id);
         const mountPoint = document.getElementById("mount");
 
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         startElem.onclick = () => cssBench.run();
         pauseElem.onclick = () => cssBench.pause();
         resetElem.onclick = () => cssBench.reset();
-    });
+    }
 
     function CssBench(mountPoint, namesList) {
         const self = this;
