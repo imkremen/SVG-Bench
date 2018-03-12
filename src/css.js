@@ -76,9 +76,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         const iconProto = document.createElement("i");
 
-        function _bench(timestamp) {
-            let progress = timestamp - startTime;
-            console.log(progress)
+        function _bench() {
+            console.log(performance.now() - startTime);
             if (iconIndex < self.icons) {
                 const iconElem = iconProto.cloneNode(true);
                 iconElem.setAttribute("class", "svg-icon icon-"+namesList[iconIndex]);

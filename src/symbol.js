@@ -88,9 +88,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         tempSVG.insertAdjacentHTML("beforeend","<svg class='svg-icon'><use xlink:href=''></use></svg>");
         let iconProto = tempSVG.firstChild;
         
-        function _bench(timestamp) {
-            let progress = timestamp - startTime;
-            console.log(progress)
+        function _bench() {
+            console.log(performance.now() - startTime);
             if (iconIndex < self.icons) {
                 const iconElem = iconProto.cloneNode(true);
                 iconElem.firstElementChild.setAttribute("xlink:href", "#" + namesList[iconIndex]);
