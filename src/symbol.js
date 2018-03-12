@@ -84,17 +84,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
             mountPoint.innerHTML = "";
         };
 
-        const iconProto = document.createElement("i");
-        iconProto.className = "svg-icon-wrap";
-        const inner = _createIcon("");
-        iconProto.appendChild(inner);
+        var tempSVG = document.createElement("div");
+        tempSVG.insertAdjacentHTML("beforeend","<svg class='svg-icon'><use xlink:href=''></use></svg>");
+        let iconProto = tempSVG.firstChild;
         
         function _bench(timestamp) {
             let progress = timestamp - startTime;
             console.log(progress)
             if (iconIndex < self.icons) {
                 const iconElem = iconProto.cloneNode(true);
-                iconElem.firstElementChild.firstElementChild.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#" + namesList[iconIndex]);
+                iconElem.firstElementChild.setAttribute("xlink:href", "#" + namesList[iconIndex]);
                 mountPoint.appendChild(iconElem);
                 iconIndex++;
                 startTime = performance.now();
@@ -107,26 +106,5 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 globalID = window.requestAnimationFrame(_bench);
             }
         }
-    }
-
-
-    // function _appendClone(parent, child) {
-    //     parent.appendChild(child.cloneNode(true));
-    // } 
-    
-    function _createIcon(name, width = "24", height = "24") {
-      const xmlns = "http://www.w3.org/2000/svg";
-      const xlink = "http://www.w3.org/1999/xlink";
-    //   const pref = "icon-";
-  
-      let svgElem = document.createElementNS(xmlns, "svg");
-    //   svgElem.setAttributeNS (null, "class", pref + name);
-    //   svgElem.setAttributeNS (null, "role", "presentation");
-    //   svgElem.setAttributeNS (null, "width", width);
-    //   svgElem.setAttributeNS (null, "height", height);
-      let use = document.createElementNS(xmlns, "use");
-      use.setAttributeNS(xlink, "xlink:href", "#" + name);
-      svgElem.appendChild(use);
-      return svgElem;
     }
   })
